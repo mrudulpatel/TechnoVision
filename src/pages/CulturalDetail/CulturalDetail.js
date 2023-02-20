@@ -29,39 +29,35 @@ const CulturalDetail = () => {
             <div className={classes.headingBox}>
               <h3 className={classes.heading}>{culturalDetail[0].heading}</h3>
               <p className={classes.para}>{culturalDetail[0].para}</p>
+              <h3 className={classes.heading}>Prize Money</h3>
+              <h3 className={classes.heading}>
+                1<sup>st</sup> Prize - ₹5000
+              </h3>
+              <h3 className={classes.heading}>
+                2<sup>nd</sup> Prize - ₹3000
+              </h3>
+              <span className={classes.amount}>
+                Registration fees: ₹
+                <span className={classes.amount}>
+                  {culturalDetail[0].regFee}
+                </span>
+              </span>
+
+              <h3 className={classes.cont}>
+                Contact - {culturalDetail[0].contact1}
+              </h3>
+              <h3 className={classes.cont}>
+                Contact - {culturalDetail[0].contact2}
+              </h3>
+
               <h3 className={classes.heading}> Rules & Guidelines</h3>
               <p className={classes.para}>{culturalDetail[0].rule1}</p>
               <p className={classes.para}> {culturalDetail[0].rule2}</p>
               <p className={classes.para}>{culturalDetail[0].rule3}</p>
               <p className={classes.para}>{culturalDetail[0].rule4}</p>
               <p className={classes.para}>{culturalDetail[0].rule5}</p>
-              <p className={classes.para}>{culturalDetail[0].rule6}</p>
-              <p className={classes.para}>{culturalDetail[0].rule7}</p>
-              <p className={classes.para}>{culturalDetail[0].rule8}</p>
-              <p className={classes.para}>{culturalDetail[0].rule9}</p>
-              <p className={classes.para}>{culturalDetail[0].rule11}</p>
-              <p className={classes.para}>{culturalDetail[0].rule12}</p>
-              <p className={classes.para}>{culturalDetail[0].rule13}</p>
-              <p className={classes.para}>{culturalDetail[0].rule14}</p>
-              <p className={classes.para}>{culturalDetail[0].rule15}</p>
-              <p className={classes.fees}>
-                Registration fees: ₹
-                <span className={classes.amount}>
-                  {culturalDetail[0].regFee}
-                </span>
-              </p>
 
-              <p className={classes.cont}>
-                Contact - {culturalDetail[0].contact1}
-              </p>
-              <p className={classes.cont}>
-                Contact - {culturalDetail[0].contact2}
-              </p>
-
-              <button
-                onClick={() => setOpen(!open)}
-                className={classes.btn}
-              >
+              <button onClick={() => setOpen(!open)} className={classes.btn}>
                 Register Now !
               </button>
             </div>

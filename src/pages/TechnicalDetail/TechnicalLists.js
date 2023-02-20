@@ -13,12 +13,14 @@ const TechnicalLists = [
       "Round 1: TECHNICAL QUIZ",
       "Round 2: CIRCUIT BUILDING & SIMULATION",
       "Round 3: TIE BREAKER ROUND",
-      "PRIZE MONEY",
-      "1st Prize: ₹5000/-",
-      "2nd Prize: ₹3000/-",
-      "Contact: Shubham Shastri - +918329681038",
-      "Entry Fees: ₹100/- per team",
+      // "PRIZE MONEY",
+      // "1st Prize: ₹5000/-",
+      // "2nd Prize: ₹3000/-",
+      // "Contact: Shubham Shastri - +918329681038",
+      // "Entry Fees: ₹100/- per team",
     ],
+    regFee:" 100/- per team",
+    contact1: "Shubham Shastri - +918329681038",
     amount: "Rs. 100/-",
 
     // paymentLink: "https://rzp.io/l/Karma-Ansys",
@@ -42,12 +44,14 @@ const TechnicalLists = [
       "One Question for 20 minutes",
       "Round 3: GAME OF CODES",
       "Data Structures based coding question. Solve within 25 minutes",
-      "Prize Money",
-      "1st Prize: ₹5000",
-      "2nd Prize: ₹3000",
-      "Registration Fees: ₹100/- per person",
-      "Contact: Aditya Patil - 7666511818",
+      // "Prize Money",
+      // "1st Prize: ₹5000",
+      // "2nd Prize: ₹3000",
+      // "Registration Fees: ₹100/- per person",
+      // "Contact: Aditya Patil - 7666511818",
     ],
+    regFee: " 100/- per team",
+    contact1: "Aditya Patil - 7666511818",
     amount: "Rs. 100/-",
 
     // paymentLink: "https://rzp.io/l/Karma-Arduino",
@@ -61,14 +65,17 @@ const TechnicalLists = [
     heading: "Speed Heist",
     headingPara:
       "Experience the nostalgia while inviting the child withing you and enjoy the controlled car race again.",
-    // certiPara:
-    //   "On successful completion of this 1-day Workshop, you will earn yourself a Certification in Introduction to Flutter.",
+    certiPara:
+      "On successful completion of this event, you will earn yourself a Certification of Participation.",
     rules: [
       "A Race track with various obstacles",
       "Remote Controlled Cars to be raced",
-      "Entry Fees: ₹20/-",
-      "Contact: Yogesh Jangid - 8302191920"
+      // "Entry Fees: ₹20/-",
+      // "Contact: Yogesh Jangid - 8302191920"
     ],
+
+    contact1: "Yogesh Jangid - 8302191920",
+    regFee:" 20/-",
 
     amount: "Rs. 20/-",
 
