@@ -1,0 +1,59 @@
+.single-card {
+  background: linear-gradient(150deg, #39ef74, #4600f1 100%);
+  width: 300px;
+  box-sizing: border-box;
+  padding: 2em;
+
+  border-radius: 25px;
+  color: white;
+  line-height: 25px;
+
+  float: left;
+  margin-right: 1em;
+  height: 10rem;
+  text-align: center;
+  padding-top: 4rem;
+  font-size: medium;
+  letter-spacing: 1px;
+  perspective: 1000px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.single-card:hover {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.card-front,
+.card-back {
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+
+/* Style the back side */
+.card-back {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 25px;
+  height: 100%;
+  background: linear-gradient(150deg, #39ef74, #4600f1 100%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.cs-card {
+  padding: 35px;
+}
+
+.all-cards {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5rem;
+}
