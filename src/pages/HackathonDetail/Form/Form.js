@@ -122,7 +122,9 @@ const Form = (props) => {
         url: "https://chat.whatsapp.com/B9Kx2ux1ftf3rOfUeH5oDG",
       }
     );
-    const textWidth = pdf.getTextWidth("Join the TechnoVision 2023 Community (Click on this link)");
+    const textWidth = pdf.getTextWidth(
+      "Join the TechnoVision 2023 Community (Click on this link)"
+    );
     pdf.line(85, 1522, 85 + textWidth, 1522);
     pdf.save(`${id}.pdf`);
     setOpen(false);
@@ -148,13 +150,13 @@ const Form = (props) => {
       {flag === false ? (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading} style={{color:"white"}}>
+            <h3 className={classes.bkdHeading} style={{ color: "white" }}>
               Register for {sessionStorage.getItem("eventName")}
               <p className={classes.input}>Registration ID: {id}</p>
               <p className={classes.input}>Receipt No.: {receiptId}</p>
             </h3>
             <div onClick={props.onClick} className={classes.close}>
-              <FontAwesomeIcon icon={faXmark} size="3x" />
+              <FontAwesomeIcon icon={faXmark} color="white" size="3x" />
             </div>
           </div>
           <form onSubmit={handleSubmit}>
@@ -253,13 +255,13 @@ const Form = (props) => {
       ) : (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading}>
+            <h3 className={classes.bkdHeading} style={{ color: "white" }}>
               Thank You for Registering at TechnoVision!!
               <p className={classes.input}>Registration ID: {finalId}</p>
               <p className={classes.input}>Receipt ID: {receiptId}</p>
             </h3>
             <div onClick={props.onClick} className={classes.close}>
-              <FontAwesomeIcon icon={faXmark} size="3x" />
+              <FontAwesomeIcon icon={faXmark} color="white" size="3x" />
             </div>
           </div>
         </div>

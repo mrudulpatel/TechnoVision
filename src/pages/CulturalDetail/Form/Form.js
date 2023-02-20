@@ -1,5 +1,5 @@
 import classes from "./Form.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,8 @@ import jsPDF from "jspdf";
 import ReceiptBook from "./receiptbook.png";
 import { Download } from "@mui/icons-material";
 import { Dialog } from "@mui/material";
+import { RotatingLines } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const Form = (props) => {
   const [open, setOpen] = useState(false);
@@ -22,6 +24,7 @@ const Form = (props) => {
   const [image, setImage] = useState("");
   const [flag, setFlag] = useState(false);
   const [receiptId, setReceiptId] = useState("");
+  const toastIdCollection = useRef(null);
 
   const nameHandler = (event) => {
     setfullName(event.target.value);
@@ -58,6 +61,27 @@ const Form = (props) => {
     setID("TechVi" + Math.floor(Math.random() * 100000));
     setReceiptId(Math.floor(Math.random() * 100000));
   }, []);
+
+  const notify = () => {
+    toastIdCollection.current = toast.warn(
+      () => (
+        <div>
+          <RotatingLines width="20" strokeWidth="5" strokeColor={"black"} />
+          &nbsp;&nbsp;Registering...
+        </div>
+      ),
+      { autoClose: false, icon: false }
+    );
+  };
+
+  const update = () =>
+    toast.update(toastIdCollection.current, {
+      render: "Registered Successfully!!",
+      type: toast.TYPE.SUCCESS,
+      autoClose: 1000,
+      icon: true,
+      className: "rotateY animated",
+    });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -154,7 +178,7 @@ const Form = (props) => {
               <p className={classes.input}>Receipt No.: {receiptId}</p>
             </h3>
             <div onClick={props.onClick} className={classes.close}>
-              <FontAwesomeIcon icon={faXmark} size="3x" />
+              <FontAwesomeIcon icon={faXmark} color="white" size="3x" />
             </div>
           </div>
           <form onSubmit={handleSubmit}>
@@ -253,13 +277,13 @@ const Form = (props) => {
       ) : (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading}>
+            <h3 className={classes.bkdHeading} style={{color:"white"}}>
               Thank You for Registering at TechnoVision!!
               <p className={classes.input}>Registration ID: {finalId}</p>
               <p className={classes.input}>Receipt ID: {receiptId}</p>
             </h3>
             <div onClick={props.onClick} className={classes.close}>
-              <FontAwesomeIcon icon={faXmark} size="3x" />
+              <FontAwesomeIcon icon={faXmark} color="white" size="3x" />
             </div>
           </div>
         </div>

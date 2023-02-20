@@ -154,7 +154,7 @@ const Form = (props) => {
               <p className={classes.input}>Receipt No.: {receiptId}</p>
             </h3>
             <div onClick={props.onClick} className={classes.close}>
-              <FontAwesomeIcon icon={faXmark} size="3x" />
+              <FontAwesomeIcon color="white" icon={faXmark} size="3x" />
             </div>
           </div>
           <form onSubmit={handleSubmit}>
@@ -253,13 +253,13 @@ const Form = (props) => {
       ) : (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading}>
+            <h3 className={classes.bkdHeading} style={{color:"white"}}>
               Thank You for Registering at TechnoVision!!
               <p className={classes.input}>Registration ID: {finalId}</p>
               <p className={classes.input}>Receipt ID: {receiptId}</p>
             </h3>
             <div onClick={props.onClick} className={classes.close}>
-              <FontAwesomeIcon icon={faXmark} size="3x" />
+              <FontAwesomeIcon color="white" icon={faXmark} size="3x" />
             </div>
           </div>
         </div>
