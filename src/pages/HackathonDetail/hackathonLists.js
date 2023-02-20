@@ -41,7 +41,7 @@ const hackathonLists = [
     name: "bollywoodquiz",
     id: 1,
     imgSrc:
-      "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/bollywoodquiz.jpg?alt=media&token=c21a1fea-c052-466e-b242-35a9eff8ef12",
+      "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/Bollywood_quiz%5B1%5D.png?alt=media&token=60c14923-aeb6-40bf-abc9-547394bb2908",
     heading: "Bollywood Quiz",
     rules: [
       "For Rules and Regulation Contact:",

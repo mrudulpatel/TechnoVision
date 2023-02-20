@@ -50,7 +50,7 @@ const GamesLists = [
     id: 2,
     name: "boxcricket",
     imgSrc:
-      "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/box%20cricket.jpg?alt=media&token=1d140d9d-b60b-4324-b041-099a9ee1226d",
+      "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/box%20cricket.jpg?alt=media&token=a822cad9-5b22-413b-8047-94e6d0929a6e",
     heading: "BOX CRICKET",
     para: "",
     rules: [
