@@ -105,6 +105,25 @@ const Form = (props) => {
     pdf.text(451, 766, `${fullName}`);
     pdf.text(239, 1161, `${sessionStorage.getItem("eventName")}`);
     pdf.text(1727, 1161, `${sessionStorage.getItem("amount")}`);
+    pdf.setFontSize(60);
+    pdf.text(85, 1272, "Please Note:");
+    pdf.text(85, 1352, "1.) This amount is non-refundable");
+    pdf.text(
+      85,
+      1432,
+      "2.) There is a surprise gift for winner and runners up"
+    );
+    pdf.setTextColor("blue");
+    pdf.textWithLink(
+      "Join the TechnoVision 2023 Community (Click on this link)",
+      85,
+      1512,
+      {
+        url: "https://chat.whatsapp.com/B9Kx2ux1ftf3rOfUeH5oDG",
+      }
+    );
+    const textWidth = pdf.getTextWidth("Join the TechnoVision 2023 Community (Click on this link)");
+    pdf.line(85, 1522, 85 + textWidth, 1522);
     pdf.save(`${id}.pdf`);
     setOpen(false);
     setFlag(true);
@@ -129,7 +148,7 @@ const Form = (props) => {
       {flag === false ? (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading} style={{color:"white"}}>
+            <h3 className={classes.bkdHeading} style={{ color: "white" }}>
               Register for {sessionStorage.getItem("eventName")}
               <p className={classes.input}>Registration ID: {id}</p>
               <p className={classes.input}>Receipt No.: {receiptId}</p>
