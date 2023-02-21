@@ -31,7 +31,7 @@ const CulturalLists = [
     name: "egaming",
     // para: "Music is the universal language of mankind. Where words fail, music speaks. 𝐊𝐀𝐑𝐌𝐀'𝟐𝟐 is here with ' 𝐋𝐢𝐠𝐡𝐭 𝐌𝐮𝐬𝐢𝐜 𝐂𝐨𝐦𝐩𝐞𝐭𝐢𝐭𝐢𝐨𝐧 '. Do participate and never miss a chance to show up your passion. Let your words speak through music !",
     imgSrc:
-      "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/Battle_in_style%5B1%5D.jpg?alt=media&token=2bbf5103-f75d-4b39-aeca-733fadf2541b",
+      "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/Battle%20in%20style.png?alt=media&token=fa765795-f1aa-412b-b6a5-1369c40408dc",
     heading: "Battle In Style (E - GAMING)",
     rule1: "1. Game should already be installed",
     rule2: "2. All participants must have earphones/headphones",
