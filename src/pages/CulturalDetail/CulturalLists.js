@@ -39,8 +39,8 @@ const CulturalLists = [
     // rule4: "PRIZE MONEY",
     // rule5: "1st Prize: ₹5000/-",
     // rule6: "2nd Prize: ₹3000/-",
-    regFee: " 200/- per Squad",
-    amount: "Rs. 200/-",
+    regFee: " 100/- per Squad",
+    amount: "Rs. 100/-",
 
     contact1: "Vaibhav Vyas | +91 87883 66073",
     contact2: "Gaurav Pandit | +91 83086 50292",
