@@ -24,6 +24,7 @@ const Form = (props) => {
   const [image, setImage] = useState("");
   const [flag, setFlag] = useState(false);
   const [receiptId, setReceiptId] = useState("");
+  const [college, setCollege] = useState("");
   const toastIdCollection = useRef(null);
 
   const nameHandler = (event) => {
@@ -73,6 +74,7 @@ const Form = (props) => {
       phoneNo: phoneNo,
       dept: dept,
       year: year,
+      college: college,
       image: image,
       amount: sessionStorage.getItem("amount"),
       receiptId: receiptId,
@@ -193,6 +195,15 @@ const Form = (props) => {
                 name="departments"
                 placeholder="Enter your Department"
                 onChange={(e) => setDept(e.target.value)}
+                className={classes.input}
+                required
+              />
+              {/* COLLEGE NAME */}
+              <input
+                type="text"
+                name="college"
+                placeholder="Enter your College Name"
+                onChange={(e) => setCollege(e.target.value)}
                 className={classes.input}
                 required
               />

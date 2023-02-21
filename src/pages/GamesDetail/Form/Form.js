@@ -22,6 +22,7 @@ const Form = (props) => {
   const [image, setImage] = useState("");
   const [flag, setFlag] = useState(false);
   const [receiptId, setReceiptId] = useState("");
+  const [college, setCollege] = useState("");
 
   const nameHandler = (event) => {
     setfullName(event.target.value);
@@ -70,6 +71,7 @@ const Form = (props) => {
       phoneNo: phoneNo,
       dept: dept,
       year: year,
+      college: college,
       image: image,
       amount: sessionStorage.getItem("amount"),
       receiptId: receiptId,
@@ -123,7 +125,9 @@ const Form = (props) => {
         url: "https://chat.whatsapp.com/B9Kx2ux1ftf3rOfUeH5oDG",
       }
     );
-    const textWidth = pdf.getTextWidth("Join the TechnoVision 2023 Community (Click on this link)");
+    const textWidth = pdf.getTextWidth(
+      "Join the TechnoVision 2023 Community (Click on this link)"
+    );
     pdf.line(85, 1522, 85 + textWidth, 1522);
     pdf.save(`${id}.pdf`);
     setOpen(false);
@@ -149,7 +153,7 @@ const Form = (props) => {
       {flag === false ? (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading} style={{color:"white"}}>
+            <h3 className={classes.bkdHeading} style={{ color: "white" }}>
               Register for {sessionStorage.getItem("eventName")}
               <p className={classes.input}>Registration ID: {id}</p>
               <p className={classes.input}>Receipt No.: {receiptId}</p>
@@ -190,6 +194,15 @@ const Form = (props) => {
                 name="departments"
                 placeholder="Enter your Department"
                 onChange={(e) => setDept(e.target.value)}
+                className={classes.input}
+                required
+              />
+              {/* College Name */}
+              <input
+                type="text"
+                name="college"
+                placeholder="Enter your Department"
+                onChange={(e) => setCollege(e.target.value)}
                 className={classes.input}
                 required
               />
@@ -254,7 +267,7 @@ const Form = (props) => {
       ) : (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading} style={{color:"white"}}>
+            <h3 className={classes.bkdHeading} style={{ color: "white" }}>
               Thank You for Registering at TechnoVision!!
               <p className={classes.input}>Registration ID: {finalId}</p>
               <p className={classes.input}>Receipt ID: {receiptId}</p>
