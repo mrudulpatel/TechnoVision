@@ -70,6 +70,7 @@ const Form = (props) => {
       phoneNo: phoneNo,
       dept: dept,
       year: year,
+      amount: sessionStorage.getItem("amount"),
       image: image,
       receiptId: receiptId,
       timestamp: serverTimestamp(),

@@ -71,6 +71,7 @@ const Form = (props) => {
       dept: dept,
       year: year,
       image: image,
+      amount: sessionStorage.getItem("amount"),
       receiptId: receiptId,
       timestamp: serverTimestamp(),
     }).then(() => {

@@ -62,27 +62,6 @@ const Form = (props) => {
     setReceiptId(Math.floor(Math.random() * 100000));
   }, []);
 
-  const notify = () => {
-    toastIdCollection.current = toast.warn(
-      () => (
-        <div>
-          <RotatingLines width="20" strokeWidth="5" strokeColor={"black"} />
-          &nbsp;&nbsp;Registering...
-        </div>
-      ),
-      { autoClose: false, icon: false }
-    );
-  };
-
-  const update = () =>
-    toast.update(toastIdCollection.current, {
-      render: "Registered Successfully!!",
-      type: toast.TYPE.SUCCESS,
-      autoClose: 1000,
-      icon: true,
-      className: "rotateY animated",
-    });
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Calling handleSubmit");
@@ -95,6 +74,7 @@ const Form = (props) => {
       dept: dept,
       year: year,
       image: image,
+      amount: sessionStorage.getItem("amount"),
       receiptId: receiptId,
       timestamp: serverTimestamp(),
     }).then(() => {
