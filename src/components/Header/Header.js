@@ -315,6 +315,22 @@ const Header = () => {
                 </HashLink>
               </Drop>
             </li>
+            <li>
+              <Drop
+                onClick={() => setMobile(!mobile)}
+                activeClass={classes.active}
+                to="contact"
+                spy="true"
+                smooth={true}
+                offset={-100}
+                duration={600}
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <HashLink className={classes.homeLink} to="/superadmin">
+                  Admin Register
+                </HashLink>
+              </Drop>
+            </li>
           </ul>
         </div>
       </div>
