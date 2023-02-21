@@ -18,7 +18,7 @@ const Hero = () => {
           <br />
           <p className={classes.date}>MAR 1, 2023</p>
           <Countdown
-            className={classes.heading1}
+            className={classes.heading2}
             date={new Date("2023-03-01")}
           />
           <br />

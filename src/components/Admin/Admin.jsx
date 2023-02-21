@@ -2,380 +2,175 @@ import React, { useEffect, useState } from "react";
 import "./Admin.css";
 import db from "../../pages/CulturalDetail/Form/firebase";
 import Background from "../../UI/Background";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableFooter from "@mui/material/TableFooter";
-import TablePagination from "@mui/material/TablePagination";
-import Paper from "@mui/material/Paper";
-import { OpenInNew } from "@mui/icons-material";
+
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { Dialog } from "@mui/material";
+
+import TableData from "../TableData/TableData";
 import { RotatingLines } from "react-loader-spinner";
 
 const Admin = () => {
-  const [event, setEvent] = useState(" ");
+  const [events, setEvents] = useState([]);
   const [registrations, setRegistrations] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
+
   const [loading, setLoading] = useState(false);
-  const [src, setSrc] = useState("");
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
 
   useEffect(() => {
-    if (sessionStorage.getItem("email") === "mrudulpatel04@gmail.com") {
-      setEvent("Battle In Style (E - GAMING)");
-    } else if (
-      sessionStorage.getItem("email") === "atharvakurumbhatte47@gmail.com"
+    let arr = [];
+    // ADMINS
+    if (
+      sessionStorage.getItem("email") === "mrudulpatel04@gmail.com" ||
+      sessionStorage.getItem("email") === "ashwinkapile2002@gmail.com" ||
+      sessionStorage.getItem("email") === "atharvakurumbhatte47@gmail.com" ||
+      sessionStorage.getItem("email") === "nisha.auti313@gmail.com" ||
+      sessionStorage.getItem("email") === "mukundpatel753@gmail.com"
     ) {
-      setEvent("The Venture's Arena (i-Start)");
-    } else if (sessionStorage.getItem("email") === "mukundpatel753@gmail.com") {
-      setEvent("PosterNexus (Project Poster Presentation");
-    } else if (
-      sessionStorage.getItem("email") === "vidhiprajapati475@gmail.com"
+      arr.push("Battle In Style (E - GAMING)");
+      arr.push("The Venture's Arena (i-Start)");
+      arr.push("PosterNexus (Project Poster Presentation)");
+      arr.push("OVERDRIVE");
+      arr.push("BOX CRICKET");
+      arr.push("CADHOLIC");
+      arr.push("Memory Event");
+      arr.push("Bridge Crafting");
+      arr.push("Bollywood Quiz");
+      arr.push("Stranger Circuits");
+      arr.push("Game of Codes");
+      arr.push("Speed Heist");
+      console.log(arr);
+      setEvents(arr);
+    }
+    // Battle In Style Comp
+    else if (sessionStorage.getItem("email") === "vaibhavvyas179@gmail.com") {
+      arr.push("Battle In Style (E - GAMING)");
+      console.log(arr);
+      setEvents(arr);
+    }
+    // PosterNexus Comp
+    else if (sessionStorage.getItem("email") === "nbhadane01@gmail.com") {
+      arr.push("PosterNexus (Project Poster Presentation)");
+      setEvents(arr);
+    }
+    // Comp Dept Head
+    else if (sessionStorage.getItem("email") === "vishalsapkal974@gmail.com") {
+      arr.push("PosterNexus (Project Poster Presentation)");
+      arr.push("Battle In Style (E - GAMING)");
+      arr.push("The Venture's Arena (i-Start)");
+      setEvents(arr);
+    }
+    // ENTC DEPT HEAD
+    else if (
+      sessionStorage.getItem("email") === "sujay.patange3942@gmail.com"
     ) {
-      setEvent("OVERDRIVE");
-    } else if (
-      sessionStorage.getItem("email") === "mukundchamriya110@gmail.com"
+      arr.push("Stranger Circuits");
+      arr.push("Game of Codes");
+      arr.push("Speed Heist");
+      setEvents(arr);
+    }
+    // Stranger Circuits ENTC
+    else if (sessionStorage.getItem("email") === "shubhamshastri02@gmail.com") {
+      arr.push("Stranger Circuits");
+      console.log(arr);
+      setEvents(arr);
+    }
+    // Game of Codes ENTC
+    else if (sessionStorage.getItem("email") === "adittyapatil89@gmail.com") {
+      arr.push("Games of Codes");
+      setEvents(arr);
+    }
+    // Speed Heist ENTC
+    else if (sessionStorage.getItem("email") === "yogmnv72@gmail.com") {
+      arr.push("Speed Heist");
+      setEvents(arr);
+    }
+    // CIVIL DEPT HEAD
+    else if (sessionStorage.getItem("email") === "burleaditya2816@gmail.com") {
+      arr.push("Memory Event");
+      arr.push("Bridge Crafting");
+      arr.push("Bollywood Quiz");
+      setEvents(arr);
+    }
+    // MEMORY EVENT  CIVIL
+    else if (sessionStorage.getItem("email") === "ksankit95@gmail.com") {
+      arr.push("Memory Event");
+      setEvents(arr);
+    }
+    // Bridge Crafting Civil
+    else if (sessionStorage.getItem("email") === "udaysinghnagane@gmail.com") {
+      arr.push("Bridge Crafting");
+      setEvents(arr);
+    }
+    // Bollywood Quiz Civil
+    else if (sessionStorage.getItem("email") === "adarshgodse46@gmail.com") {
+      arr.push("Bollywood Quiz");
+      setEvents(arr);
+    }
+    // MECH DEPT HEAD
+    else if (
+      sessionStorage.getItem("email") === "utkarshkonarde123@gmail.com"
     ) {
-      setEvent("BOX CRICKET");
-    } else if (
-      sessionStorage.getItem("email") === "mukundchamriya753@gmail.com"
-    ) {
-      setEvent("CADHOLIC");
-    } else if (sessionStorage.getItem("email") === "jamanapatel753@gmail.com") {
-      setEvent("Memory Event");
-    } else if (sessionStorage.getItem("email") === "murjipatel753@gmail.com") {
-      setEvent("Bridge Crafting");
-    } else if (sessionStorage.getItem("email") === "rentprinter753@gmail.com") {
-      setEvent("Bollywood Quiz");
-    } else if (
-      sessionStorage.getItem("email") === "jspmtechminds2022@gmail.com"
-    ) {
-      setEvent("Stranger Circuits");
-    } else if (sessionStorage.getItem("email") === "minaxipatel987@gmail.com") {
-      setEvent("Game of Codes");
-    } else if (sessionStorage.getItem("email") === "aaryapatel0619@gmail.com") {
-      setEvent("Speed Heist");
+      arr.push("OVERDRIVE");
+      arr.push("BOX CRICKET");
+      arr.push("CADHOLIC");
+      setEvents(arr);
+    }
+    // CADHOLIC Mechanical
+    else if (sessionStorage.getItem("email") === "ugaleatharva2604@gmail.com") {
+      arr.push("CADHOLIC");
+      setEvents(arr);
+    }
+    // OVERDRIVE Mechanical
+    else if (sessionStorage.getItem("email") === "someshterkar1999@gmail.com") {
+      arr.push("OVERDRIVE");
+      setEvents(arr);
     }
   }, []);
 
   useEffect(() => {
     setLoading(true);
-    const colRef = collection(db, `${event}`);
-    const q = query(colRef, orderBy("timestamp", "desc"));
-    onSnapshot(q, (snap) => {
-      let arr = [];
-      snap.forEach((doc) => {
-        arr.push({ ...doc.data() });
-        console.log(doc.data());
+    let inc = 0;
+    let mainArr = [];
+    events.forEach((event, index) => {
+      const colRef = collection(db, `${event}`);
+      console.log(colRef.path);
+      const q = query(colRef, orderBy("timestamp", "asc"));
+      onSnapshot(q, (snap) => {
+        let arr = [];
+        snap.forEach((doc) => {
+          arr.push({ ...doc.data(), event: event });
+          inc += 1;
+          console.log(doc.data());
+        });
+        mainArr.push(arr);
+        setLoading(false);
       });
-      console.log(arr);
-      setRegistrations(arr);
-      setLoading(false);
+      setRegistrations(mainArr);
+      console.log(mainArr);
     });
-  }, [db, event]);
-
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - registrations.length) : 0;
-
-  const handlePageChange = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  }, [db, events]);
 
   return (
     <section className="gallerySection">
       <Background className="galleryBg"></Background>
-      <div className="row">
-        <div className="wrapper">
-          <h2 className="input">Registrations for {event}</h2>
-          <input
-            type="text"
-            className="inputField"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-            placeholder="Search by Name or Receipt Id"
+      {!loading ? (
+        events?.map((event, i) => (
+          <TableData eventName={event} registrations={registrations[i]} />
+        ))
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <RotatingLines
+            strokeColor={"white"}
+            strokeWidth="3"
+            animationDuration="0.75"
+            width="40"
+            visible={true}
           />
         </div>
-        <TableContainer sx={{ maxWidth: 1500 }} component={Paper}>
-          <Table sx={{ maxWidth: 1500 }} aria-label="simple table">
-            <TableHead sx={{ backgroundColor: "#166540" }}>
-              <TableRow sx={{ minHeight: "100px" }}>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Sr. No.
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Reg. ID
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Receipt ID
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Name
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Mobile Number
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Department
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Year
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Amount
-                </TableCell>
-                <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
-                  align="center"
-                >
-                  Photo
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {!loading ? (
-                search !== "" ? (
-                  registrations
-                    .filter(
-                      (item) =>
-                        item.name.includes(search) ||
-                        item.name.toLowerCase().includes(search) ||
-                        item.receiptId.toString().includes(search)
-                    )
-                    .map((row, i) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                          // backgroundColor: "#2c6b86",
-                          color: "white",
-                        }}
-                      >
-                        <TableCell
-                          align="center"
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          component="th"
-                          scope="row"
-                        >
-                          {i + 1}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.id}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.receiptId}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.name}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.phoneNo}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.dept}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.year}
-                        </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
-                          {row.amount}
-                        </TableCell>
-                        <TableCell
-                          onClick={() => {
-                            setSrc(row.image);
-                            setOpen(true);
-                          }}
-                          sx={{
-                            fontSize: "16px",
-                            fontWeight: "bold",
-                            cursor: "pointer",
-                          }}
-                          align="center"
-                        >
-                          <OpenInNew />
-                        </TableCell>
-                      </TableRow>
-                    ))
-                ) : registrations?.length >= 1 ? (
-                  (rowsPerPage > 0
-                    ? registrations?.slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                    : registrations
-                  )?.map((row, i) => (
-                    <TableRow
-                      key={row.name}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                        // backgroundColor: "#2c6b86",
-                        color: "white",
-                      }}
-                    >
-                      <TableCell
-                        align="center"
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        component="th"
-                        scope="row"
-                      >
-                        {i + 1}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.id}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.receiptId}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.name}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.phoneNo}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.dept}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.year}
-                      </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
-                        {row.amount}
-                      </TableCell>
-                      <TableCell
-                        onClick={() => {
-                          setSrc(row.image);
-                          setOpen(true);
-                        }}
-                        sx={{
-                          fontSize: "16px",
-                          fontWeight: "bold",
-                          cursor: "pointer",
-                        }}
-                        align="center"
-                      >
-                        <OpenInNew />
-                      </TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <p style={{ color: "red" }}>No registrations found!!</p>
-                    </td>
-                    <td></td>
-                  </tr>
-                )
-              ) : (
-                <RotatingLines
-                  strokeColor={"black"}
-                  strokeWidth="3"
-                  animationDuration="0.75"
-                  width="40"
-                  visible={true}
-                />
-              )}
-              {/* {emptyRows > 0 && null} */}
-            </TableBody>
-            <TableFooter sx={{ textAlign: "center", fontSize:"16px" }}>
-              <TableRow sx={{ textAlign: "center", fontSize:"16px" }}>
-                <TablePagination
-                  rowsPerPageOptions={[25, 50, 75, { label: "All", value: -1 }]}
-                  colSpan={6}
-                  count={registrations?.length}
-                  page={page}
-                  rowsPerPage={rowsPerPage}
-                  onPageChange={handlePageChange}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  sx={{ textAlign: "center", fontSize:"16px" }}
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
-      </div>
-      {open && (
-        <Dialog open={open} onClose={() => setOpen(!open)} fullWidth>
-          <img src={src} alt="payment_ss" />
-        </Dialog>
       )}
     </section>
   );
