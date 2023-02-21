@@ -176,6 +176,23 @@
   transform: scale(1.1);
 }
 
+.MuiToolbar-root{
+  font-size: 16px !important;
+}
+
+.MuiTablePagination-selectLabel,
+.MuiTablePagination-displayedRows {
+  font-size: 16px !important;
+}
+
+.MuiTablePagination-actions {
+  font-size: 16px !important;
+}
+
+.MuiMenuItem-root {
+  font-size: 16px !important;
+}
+
 @media screen and (max-width: 800px) {
   .column {
     flex: 50%;

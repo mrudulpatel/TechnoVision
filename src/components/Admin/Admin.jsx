@@ -8,6 +8,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import { OpenInNew } from "@mui/icons-material";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
@@ -21,6 +23,8 @@ const Admin = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [src, setSrc] = useState("");
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
 
   useEffect(() => {
     if (sessionStorage.getItem("email") === "mrudulpatel04@gmail.com") {
@@ -75,6 +79,18 @@ const Admin = () => {
       setLoading(false);
     });
   }, [db, event]);
+
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - registrations.length) : 0;
+
+  const handlePageChange = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <section className="gallerySection">
@@ -135,6 +151,12 @@ const Admin = () => {
                   align="center"
                 >
                   Year
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  align="center"
+                >
+                  Amount
                 </TableCell>
                 <TableCell
                   sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
@@ -208,6 +230,12 @@ const Admin = () => {
                           {row.year}
                         </TableCell>
                         <TableCell
+                          sx={{ fontSize: "16px", fontWeight: "bold" }}
+                          align="center"
+                        >
+                          {row.amount}
+                        </TableCell>
+                        <TableCell
                           onClick={() => {
                             setSrc(row.image);
                             setOpen(true);
@@ -223,8 +251,14 @@ const Admin = () => {
                         </TableCell>
                       </TableRow>
                     ))
-                ) : (
-                  registrations.map((row, i) => (
+                ) : registrations?.length >= 1 ? (
+                  (rowsPerPage > 0
+                    ? registrations?.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : registrations
+                  )?.map((row, i) => (
                     <TableRow
                       key={row.name}
                       sx={{
@@ -278,6 +312,12 @@ const Admin = () => {
                         {row.year}
                       </TableCell>
                       <TableCell
+                        sx={{ fontSize: "16px", fontWeight: "bold" }}
+                        align="center"
+                      >
+                        {row.amount}
+                      </TableCell>
+                      <TableCell
                         onClick={() => {
                           setSrc(row.image);
                           setOpen(true);
@@ -293,6 +333,16 @@ const Admin = () => {
                       </TableCell>
                     </TableRow>
                   ))
+                ) : (
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <p style={{ color: "red" }}>No registrations found!!</p>
+                    </td>
+                    <td></td>
+                  </tr>
                 )
               ) : (
                 <RotatingLines
@@ -303,7 +353,22 @@ const Admin = () => {
                   visible={true}
                 />
               )}
+              {/* {emptyRows > 0 && null} */}
             </TableBody>
+            <TableFooter sx={{ textAlign: "center", fontSize:"16px" }}>
+              <TableRow sx={{ textAlign: "center", fontSize:"16px" }}>
+                <TablePagination
+                  rowsPerPageOptions={[25, 50, 75, { label: "All", value: -1 }]}
+                  colSpan={6}
+                  count={registrations?.length}
+                  page={page}
+                  rowsPerPage={rowsPerPage}
+                  onPageChange={handlePageChange}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  sx={{ textAlign: "center", fontSize:"16px" }}
+                />
+              </TableRow>
+            </TableFooter>
           </Table>
         </TableContainer>
       </div>
