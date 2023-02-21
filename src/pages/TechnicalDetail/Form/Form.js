@@ -201,7 +201,7 @@ const Form = (props) => {
               <input
                 type="text"
                 name="college"
-                placeholder="Enter your Department"
+                placeholder="Enter your College Name"
                 onChange={(e) => setCollege(e.target.value)}
                 className={classes.input}
                 required
