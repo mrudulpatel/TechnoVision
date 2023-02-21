@@ -12,7 +12,7 @@ import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import { OpenInNew } from "@mui/icons-material";
 
-function TableData({eventName, registrations}) {
+function TableData({ eventName, registrations }) {
   const [src, setSrc] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
@@ -49,55 +49,61 @@ function TableData({eventName, registrations}) {
             <TableHead sx={{ backgroundColor: "#166540" }}>
               <TableRow sx={{ minHeight: "100px" }}>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Sr. No.
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Reg. ID
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Receipt ID
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Name
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Mobile Number
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
+                  align="center"
+                >
+                  College Name
+                </TableCell>
+                <TableCell
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Department
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Year
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Amount
                 </TableCell>
                 <TableCell
-                  sx={{ fontSize: "18px", fontWeight: "bold", color: "white" }}
+                  sx={{ fontSize: "18px", color: "white" }}
                   align="center"
                 >
                   Photo
@@ -125,52 +131,34 @@ function TableData({eventName, registrations}) {
                       >
                         <TableCell
                           align="center"
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
+                          sx={{ fontSize: "16px" }}
                           component="th"
                           scope="row"
                         >
                           {i + 1}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.id}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.receiptId}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.name}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.phoneNo}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
+                          {row?.college}
+                        </TableCell>
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.dept}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.year}
                         </TableCell>
-                        <TableCell
-                          sx={{ fontSize: "16px", fontWeight: "bold" }}
-                          align="center"
-                        >
+                        <TableCell sx={{ fontSize: "16px" }} align="center">
                           {row?.amount}
                         </TableCell>
                         <TableCell
@@ -180,7 +168,7 @@ function TableData({eventName, registrations}) {
                           }}
                           sx={{
                             fontSize: "16px",
-                            fontWeight: "bold",
+
                             cursor: "pointer",
                           }}
                           align="center"
@@ -207,52 +195,34 @@ function TableData({eventName, registrations}) {
                     >
                       <TableCell
                         align="center"
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
+                        sx={{ fontSize: "16px" }}
                         component="th"
                         scope="row"
                       >
                         {i + 1}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.id}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.receiptId}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.name}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.phoneNo}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
+                        {row?.college}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.dept}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.year}
                       </TableCell>
-                      <TableCell
-                        sx={{ fontSize: "16px", fontWeight: "bold" }}
-                        align="center"
-                      >
+                      <TableCell sx={{ fontSize: "16px" }} align="center">
                         {row?.amount}
                       </TableCell>
                       <TableCell
@@ -262,7 +232,6 @@ function TableData({eventName, registrations}) {
                         }}
                         sx={{
                           fontSize: "16px",
-                          fontWeight: "bold",
                           cursor: "pointer",
                         }}
                         align="center"
@@ -277,7 +246,9 @@ function TableData({eventName, registrations}) {
                     <td></td>
                     <td></td>
                     <td>
-                      <p style={{ color: "red", fontSize:"2rem" }}>No registrations found!!</p>
+                      <p style={{ color: "red", fontSize: "2rem" }}>
+                        No registrations found!!
+                      </p>
                     </td>
                     <td></td>
                   </tr>

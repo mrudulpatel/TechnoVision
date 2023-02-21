@@ -30,11 +30,17 @@ const CulturalDetail = () => {
               <h3 className={classes.heading}>{culturalDetail[0].heading}</h3>
               <p className={classes.para}>{culturalDetail[0].para}</p>
               <h3 className={classes.heading}>Prize Money</h3>
-              <h3 className={classes.heading}>
+              <h3 className={classes.heading} hidden={params.id === "egaming" ? true : false}>
                 1<sup>st</sup> Prize - ₹5000
               </h3>
-              <h3 className={classes.heading}>
+              <h3 className={classes.heading} hidden={params.id === "egaming" ? true : false}>
                 2<sup>nd</sup> Prize - ₹3000
+              </h3>
+              <h3 className={classes.heading} hidden={params.id === "egaming" ? false : true}>
+                1<sup>st</sup> Prize - ₹3000
+              </h3>
+              <h3 className={classes.heading} hidden={params.id === "egaming" ? false : true}>
+                2<sup>nd</sup> Prize - ₹2000
               </h3>
               <span className={classes.amount}>
                 Registration fees: ₹
@@ -43,10 +49,10 @@ const CulturalDetail = () => {
                 </span>
               </span>
 
-              <h3 className={classes.cont}>
+              <h3 className={classes.heading}>
                 Contact - {culturalDetail[0].contact1}
               </h3>
-              <h3 className={classes.cont}>
+              <h3 className={classes.heading}>
                 Contact - {culturalDetail[0].contact2}
               </h3>
 
