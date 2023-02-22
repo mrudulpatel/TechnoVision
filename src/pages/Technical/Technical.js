@@ -17,6 +17,7 @@ const Technical = () => {
             heading={list.heading}
             amount={list.amount}
             redirectLink={list.redirectLink}
+            qr={list.paymentLink}
           />
         );
       })}

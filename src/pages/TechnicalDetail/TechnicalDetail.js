@@ -56,16 +56,9 @@ const TechnicalDetail = () => {
               >
                 Contact - {technical[0].contact1}
               </h3>
-
-              <a
-                href={technical[0].paymentLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button onClick={() => setOpen(!open)} className={classes.btn}>
-                  Register Now !
-                </button>
-              </a>
+              <button onClick={() => setOpen(!open)} className={classes.btn}>
+                Register Now !
+              </button>
             </div>
           </div>
         </div>
