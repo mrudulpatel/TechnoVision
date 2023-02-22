@@ -5,11 +5,11 @@ const questions = [
   {
     question: "How can i participate in TechnoVision 2023?",
     answer:
-      "All can participate by registering through our portal, and registration closes 1 day prior to the event dates (28 & 29 FEB 2023) of TechnoVision 2023",
+      "All can participate by registering through our portal, and registration closes 1 day prior to the event dates (1 March 2023) of TechnoVision 2023",
   },
   {
     question: "What are the dates of TechnoVision 2023?",
-    answer: "Feb 28, 29 2023. Events will happen from 9:00 am to 10:00 pm",
+    answer: "1 March 2023",
   },
 //   {
 //     question: "What is the entry fees for TechnoVision 2023?",
