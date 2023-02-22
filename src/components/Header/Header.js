@@ -283,22 +283,6 @@ const Header = () => {
               <Drop
                 onClick={() => setMobile(!mobile)}
                 activeClass={classes.active}
-                to="ambassador"
-                spy="true"
-                smooth={true}
-                offset={-100}
-                duration={600}
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                <HashLink className={classes.homeLink} to="#ambassador">
-                  Register
-                </HashLink>
-              </Drop>
-            </li>
-            <li hidden={window.location.pathname !== "/home" ? true : false}>
-              <Drop
-                onClick={() => setMobile(!mobile)}
-                activeClass={classes.active}
                 to="contact"
                 spy="true"
                 smooth={true}
