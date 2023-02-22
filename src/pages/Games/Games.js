@@ -12,6 +12,7 @@ const Games = () => {
             key={list.id}
             imgSrc={list.imgSrc}
             heading={list.heading}
+            qr={list.paymentLink}
             redirectLink={list.redirectLink}
             amount={list.amount}
           />
