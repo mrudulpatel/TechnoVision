@@ -3,13 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import db from "./firebase";
+import db, { storage } from "../../firebase";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import jsPDF from "jspdf";
 import ReceiptBook from "./receiptbook.png";
 import { Download } from "@mui/icons-material";
 import { Dialog } from "@mui/material";
-
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Form = (props) => {
   const [open, setOpen] = useState(false);
@@ -66,30 +66,35 @@ const Form = (props) => {
     e.preventDefault();
     console.log("Calling handleSubmit");
     const docRef = doc(db, `${sessionStorage.getItem("eventName")}/${id}`);
-    setDoc(docRef, {
-      id: id,
-      name: fullName,
-      email: mail,
-      phoneNo: phoneNo,
-      dept: dept,
-      year: year,
-      college: college,
-      image: image,
-      amount: sessionStorage.getItem("amount"),
-      receiptId: receiptId,
-      timestamp: serverTimestamp(),
-    }).then(() => {
-      console.log("Data uploaded");
-      generatePdf();
-      // console.log("Saved");
-      // setDept("");
-      // setMail("");
-      // setNumber("");
-      // setYear("");
-      // setfullName("");
-      // setImage("");
-      // setReceiptId("");
-      // setFlag(true);
+    const storageRef = ref(storage, `receipts/${fullName+"_"+id}`);
+    uploadString(storageRef, image, "data_url").then(() => {
+      getDownloadURL(storageRef).then((url) => {
+        setDoc(docRef, {
+          id: id,
+          name: fullName,
+          email: mail,
+          phoneNo: phoneNo,
+          dept: dept,
+          year: year,
+          college: college,
+          image: url,
+          amount: sessionStorage.getItem("amount"),
+          receiptId: receiptId,
+          timestamp: serverTimestamp(),
+        }).then(() => {
+          console.log("Data uploaded");
+          generatePdf();
+          // console.log("Saved");
+          // setDept("");
+          // setMail("");
+          // setNumber("");
+          // setYear("");
+          // setfullName("");
+          // setImage("");
+          // setReceiptId("");
+          // setFlag(true);
+        });
+      });
     });
   };
 
@@ -127,7 +132,9 @@ const Form = (props) => {
         url: "https://chat.whatsapp.com/B9Kx2ux1ftf3rOfUeH5oDG",
       }
     );
-    const textWidth = pdf.getTextWidth("Join the TechnoVision 2023 Community (Click on this link)");
+    const textWidth = pdf.getTextWidth(
+      "Join the TechnoVision 2023 Community (Click on this link)"
+    );
     pdf.line(85, 1522, 85 + textWidth, 1522);
     pdf.save(`${id}.pdf`);
     setOpen(false);
@@ -265,7 +272,7 @@ const Form = (props) => {
       ) : (
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
-            <h3 className={classes.bkdHeading} style={{color:"white"}}>
+            <h3 className={classes.bkdHeading} style={{ color: "white" }}>
               Thank You for Registering at TechnoVision!!
               <p className={classes.input}>Registration ID: {finalId}</p>
               <p className={classes.input}>Receipt ID: {receiptId}</p>

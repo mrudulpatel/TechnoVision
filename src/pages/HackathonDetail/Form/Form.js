@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import db from "./firebase";
+import db, { storage } from "../../firebase";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import jsPDF from "jspdf";
 import ReceiptBook from "./receiptbook.png";
 import { Download } from "@mui/icons-material";
 import { Dialog } from "@mui/material";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const Form = (props) => {
   const [open, setOpen] = useState(false);
@@ -64,30 +65,35 @@ const Form = (props) => {
     e.preventDefault();
     console.log("Calling handleSubmit");
     const docRef = doc(db, `${sessionStorage.getItem("eventName")}/${id}`);
-    setDoc(docRef, {
-      id: id,
-      name: fullName,
-      email: mail,
-      phoneNo: phoneNo,
-      dept: dept,
-      year: year,
-      college: college,
-      image: image,
-      amount: sessionStorage.getItem("amount"),
-      receiptId: receiptId,
-      timestamp: serverTimestamp(),
-    }).then(() => {
-      console.log("Data uploaded");
-      generatePdf();
-      // console.log("Saved");
-      // setDept("");
-      // setMail("");
-      // setNumber("");
-      // setYear("");
-      // setfullName("");
-      // setImage("");
-      // setReceiptId("");
-      // setFlag(true);
+    const storageRef = ref(storage, `receipts/${fullName + "_" + id}`);
+    uploadString(storageRef, image, "data_url").then(() => {
+      getDownloadURL(storageRef).then((url) => {
+        setDoc(docRef, {
+          id: id,
+          name: fullName,
+          email: mail,
+          phoneNo: phoneNo,
+          dept: dept,
+          year: year,
+          college: college,
+          image: url,
+          amount: sessionStorage.getItem("amount"),
+          receiptId: receiptId,
+          timestamp: serverTimestamp(),
+        }).then(() => {
+          console.log("Data uploaded");
+          generatePdf();
+          // console.log("Saved");
+          // setDept("");
+          // setMail("");
+          // setNumber("");
+          // setYear("");
+          // setfullName("");
+          // setImage("");
+          // setReceiptId("");
+          // setFlag(true);
+        });
+      });
     });
   };
 
