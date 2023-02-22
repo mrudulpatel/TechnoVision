@@ -123,7 +123,6 @@ const HackathonDetail = () => {
               >
                 Contact - {hackathon[0]?.contact2}
               </h3>
-
               <p className={classes.para}>{hackathon[0].certiPara}</p>
               <h3
                 className={classes.heading}
@@ -131,16 +130,12 @@ const HackathonDetail = () => {
               >
                 Rules
               </h3>
-
               {hackathon[0].rules.map((map) => {
                 return <p className={classes.para}>{map}</p>;
               })}
-
-              <a href={hackathon[0].paymentLink}>
-                <button onClick={() => setOpen(!open)} className={classes.btn}>
-                  Register Now !
-                </button>
-              </a>
+              <button onClick={() => setOpen(!open)} className={classes.btn}>
+                Register Now !
+              </button>
             </div>
           </div>
         </div>
