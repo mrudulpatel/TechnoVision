@@ -30,7 +30,7 @@ const EventCard = (props) => {
             console.log("Saved");
           }}
         >
-          View More
+          Register Now
         </Link>
       </div>
       {window.location.pathname === "/home" ? (
