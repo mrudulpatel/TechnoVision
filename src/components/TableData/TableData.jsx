@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
-import { Dialog } from "@mui/material";
+import { Checkbox, Dialog, TextField, ToggleButton } from "@mui/material";
 import { RotatingLines } from "react-loader-spinner";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,14 +11,39 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import { OpenInNew } from "@mui/icons-material";
+import db from "../../pages/firebase";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  updateDoc,
+} from "firebase/firestore";
 
-function TableData({ eventName, registrations }) {
+function TableData({ eventName }) {
   const [src, setSrc] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const [registrations, setRegistrations] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    const colRef = collection(db, `${eventName}`);
+    const q = query(colRef, orderBy("timestamp", "asc"));
+    onSnapshot(q, (snap) => {
+      let arr = [];
+      snap.forEach((doc) => {
+        arr.push(doc.data());
+      });
+      setRegistrations(arr);
+      setLoading(false);
+      console.log(arr);
+    });
+  }, [db]);
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - registrations.length) : 0;
@@ -108,6 +133,12 @@ function TableData({ eventName, registrations }) {
                 >
                   Photo
                 </TableCell>
+                <TableCell
+                  sx={{ fontSize: "18px", color: "white" }}
+                  align="center"
+                >
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -175,6 +206,41 @@ function TableData({ eventName, registrations }) {
                         >
                           <OpenInNew />
                         </TableCell>
+                        <TableCell
+                        sx={{
+                          fontSize: "16px",
+
+                          cursor: "pointer",
+                        }}
+                        align="center"
+                      >
+                        <Checkbox
+                          onClick={() => {
+                            let checked = row?.valid
+                            if (checked === false) {
+                              const docRef = doc(db, `${eventName}/${row?.id}`);
+                              updateDoc(docRef, {
+                                valid: true,
+                              }).then(() => {
+                                checked=true;
+                                console.log(true);
+                              });
+                            } else {
+                              const docRef = doc(db, `${eventName}/${row?.id}`);
+                              updateDoc(docRef, {
+                                valid: false,
+                              }).then(() => {
+                                checked=false;
+                                console.log(false);
+                              });
+                            }
+                          }}
+                          checked={row?.valid ? true : false}
+                          color="success"
+                          sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                        />{" "}
+                        <p style={{ fontSize: 14 }}>Valid</p>
+                      </TableCell>
                       </TableRow>
                     ))
                 ) : registrations?.length >= 1 ? (
@@ -238,10 +304,46 @@ function TableData({ eventName, registrations }) {
                       >
                         <OpenInNew />
                       </TableCell>
+                      <TableCell
+                        sx={{
+                          fontSize: "16px",
+
+                          cursor: "pointer",
+                        }}
+                        align="center"
+                      >
+                        <Checkbox
+                          onClick={() => {
+                            let checked = row?.valid
+                            if (checked === false) {
+                              const docRef = doc(db, `${eventName}/${row?.id}`);
+                              updateDoc(docRef, {
+                                valid: true,
+                              }).then(() => {
+                                checked=true;
+                                console.log(true);
+                              });
+                            } else {
+                              const docRef = doc(db, `${eventName}/${row?.id}`);
+                              updateDoc(docRef, {
+                                valid: false,
+                              }).then(() => {
+                                checked=false;
+                                console.log(false);
+                              });
+                            }
+                          }}
+                          checked={row?.valid ? true : false}
+                          color="success"
+                          sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                        />{" "}
+                        <p style={{ fontSize: 14 }}>Valid</p>
+                      </TableCell>
                     </TableRow>
                   ))
                 ) : (
                   <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -250,7 +352,6 @@ function TableData({ eventName, registrations }) {
                         No registrations found!!
                       </p>
                     </td>
-                    <td></td>
                   </tr>
                 )
               ) : (
