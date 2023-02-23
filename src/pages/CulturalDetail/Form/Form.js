@@ -80,6 +80,7 @@ const Form = (props) => {
           image: url,
           amount: sessionStorage.getItem("amount"),
           receiptId: receiptId,
+          valid: false,
           timestamp: serverTimestamp(),
         }).then(() => {
           console.log("Data uploaded");

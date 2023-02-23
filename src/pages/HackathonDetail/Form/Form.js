@@ -77,6 +77,7 @@ const Form = (props) => {
           year: year,
           college: college,
           image: url,
+          valid: false,
           amount: sessionStorage.getItem("amount"),
           receiptId: receiptId,
           timestamp: serverTimestamp(),
