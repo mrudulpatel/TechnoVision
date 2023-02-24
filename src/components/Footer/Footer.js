@@ -116,13 +116,13 @@ const Footer = () => {
               alignItems: "center",
             }}
           >
-            <p>Live Views: </p>{" "}
             <img
               style={{ padding: "2px" }}
               src="https://hits.serv.rs/static/t43ssmlktqfi5gejzdfyf"
               height="30"
               alt="live_views"
             />
+            <p>People Visited this site </p>{" "}
           </div>
         </div>
       </div>
