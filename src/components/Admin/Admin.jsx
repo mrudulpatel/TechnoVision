@@ -125,35 +125,35 @@ const Admin = () => {
     }
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    let inc = 0;
-    let mainArr = [];
-    events.forEach((event, index) => {
-      const colRef = collection(db, `${event}`);
-      console.log(colRef.path);
-      const q = query(colRef, orderBy("timestamp", "asc"));
-      onSnapshot(q, (snap) => {
-        let arr = [];
-        snap.forEach((doc) => {
-          arr.push({ ...doc.data(), event: event });
-          inc += 1;
-          console.log(doc.data());
-        });
-        mainArr.push(arr);
-        setLoading(false);
-      });
-      setRegistrations(mainArr);
-      console.log(mainArr);
-    });
-  }, [db, events]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   let inc = 0;
+  //   let mainArr = [];
+  //   events.forEach((event, index) => {
+  //     const colRef = collection(db, `${event}`);
+  //     console.log(colRef.path);
+  //     const q = query(colRef, orderBy("timestamp", "asc"));
+  //     onSnapshot(q, (snap) => {
+  //       let arr = [];
+  //       snap.forEach((doc) => {
+  //         arr.push({ ...doc.data(), event: event });
+  //         inc += 1;
+  //         console.log(doc.data());
+  //       });
+  //       mainArr.push(arr);
+  //       setLoading(false);
+  //     });
+  //     setRegistrations(mainArr);
+  //     console.log(mainArr);
+  //   });
+  // }, [db, events]);
 
   return (
     <section className="gallerySection">
       <Background className="galleryBg"></Background>
       {!loading ? (
         events?.map((event, i) => (
-          <TableData eventName={event} registrations={registrations[i]} />
+          <TableData eventName={event} />
         ))
       ) : (
         <div
