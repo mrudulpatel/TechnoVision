@@ -7,7 +7,7 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import jsPDF from "jspdf";
 import ReceiptBook from "./receiptbook.png";
 import { Download } from "@mui/icons-material";
-import { Dialog } from "@mui/material";
+import { CircularProgress, Dialog } from "@mui/material";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import db, { storage } from "../../firebase";
 
@@ -24,6 +24,7 @@ const Form = (props) => {
   const [flag, setFlag] = useState(false);
   const [receiptId, setReceiptId] = useState("");
   const [college, setCollege] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const nameHandler = (event) => {
     setfullName(event.target.value);
@@ -63,6 +64,7 @@ const Form = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log("Calling handleSubmit");
     const docRef = doc(db, `${sessionStorage.getItem("eventName")}/${id}`);
     const storageRef = ref(storage, `receipts/${fullName+"_"+id}`);
@@ -141,6 +143,7 @@ const Form = (props) => {
     setFlag(true);
     setFinalID(id);
     console.log("Generated PDF");
+    setLoading(false);
   };
 
   return (
@@ -267,6 +270,7 @@ const Form = (props) => {
             >
               Register
             </button>
+            {loading && <CircularProgress color="secondary" size={20} />}
           </form>
         </div>
       ) : (

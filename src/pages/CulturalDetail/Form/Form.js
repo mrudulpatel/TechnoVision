@@ -1,5 +1,5 @@
 import classes from "./Form.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import jsPDF from "jspdf";
 import ReceiptBook from "./receiptbook.png";
 import { Download } from "@mui/icons-material";
-import { Dialog } from "@mui/material";
+import { CircularProgress, Dialog } from "@mui/material";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Form = (props) => {
@@ -24,7 +24,7 @@ const Form = (props) => {
   const [flag, setFlag] = useState(false);
   const [receiptId, setReceiptId] = useState("");
   const [college, setCollege] = useState("");
-  const toastIdCollection = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const nameHandler = (event) => {
     setfullName(event.target.value);
@@ -64,9 +64,10 @@ const Form = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     console.log("Calling handleSubmit");
     const docRef = doc(db, `${sessionStorage.getItem("eventName")}/${id}`);
-    const storageRef = ref(storage, `receipts/${fullName+"_"+id}`);
+    const storageRef = ref(storage, `receipts/${fullName + "_" + id}`);
     uploadString(storageRef, image, "data_url").then(() => {
       getDownloadURL(storageRef).then((url) => {
         setDoc(docRef, {
@@ -142,6 +143,7 @@ const Form = (props) => {
     setFlag(true);
     setFinalID(id);
     console.log("Generated PDF");
+    setLoading(false);
   };
 
   return (
@@ -268,6 +270,7 @@ const Form = (props) => {
             >
               Register
             </button>
+            {loading && <CircularProgress color="secondary" size={20} />}
           </form>
         </div>
       ) : (
