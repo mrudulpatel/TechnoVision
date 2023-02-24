@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
-import { Checkbox, Dialog, TextField, ToggleButton } from "@mui/material";
+import {
+  Checkbox,
+  Dialog,
+  IconButton,
+  TextField,
+  ToggleButton,
+} from "@mui/material";
 import { RotatingLines } from "react-loader-spinner";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -29,6 +35,7 @@ function TableData({ eventName }) {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [registrations, setRegistrations] = useState([]);
+  const [regLength, setRegLength] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -39,6 +46,7 @@ function TableData({ eventName }) {
       snap.forEach((doc) => {
         arr.push(doc.data());
       });
+      setRegLength(arr.length);
       setRegistrations(arr);
       setLoading(false);
       console.log(arr);
@@ -60,7 +68,20 @@ function TableData({ eventName }) {
     <div>
       <div className="row">
         <div className="wrapper">
-          <h2 className="input">Registrations for {eventName}</h2>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+            }}
+          >
+            <h2 className="input">Registrations for {eventName}</h2>
+            <IconButton size="medium">
+              <h2 className="input" style={{ color: "whitesmoke" }}>
+                 (Count: {regLength})
+              </h2>
+            </IconButton>
+          </div>
           <input
             type="text"
             className="inputField"
@@ -207,40 +228,46 @@ function TableData({ eventName }) {
                           <OpenInNew />
                         </TableCell>
                         <TableCell
-                        sx={{
-                          fontSize: "16px",
+                          sx={{
+                            fontSize: "16px",
 
-                          cursor: "pointer",
-                        }}
-                        align="center"
-                      >
-                        <Checkbox
-                          onClick={() => {
-                            let checked = row?.valid
-                            if (checked === false) {
-                              const docRef = doc(db, `${eventName}/${row?.id}`);
-                              updateDoc(docRef, {
-                                valid: true,
-                              }).then(() => {
-                                checked=true;
-                                console.log(true);
-                              });
-                            } else {
-                              const docRef = doc(db, `${eventName}/${row?.id}`);
-                              updateDoc(docRef, {
-                                valid: false,
-                              }).then(() => {
-                                checked=false;
-                                console.log(false);
-                              });
-                            }
+                            cursor: "pointer",
                           }}
-                          checked={row?.valid ? true : false}
-                          color="success"
-                          sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                        />{" "}
-                        <p style={{ fontSize: 14 }}>Valid</p>
-                      </TableCell>
+                          align="center"
+                        >
+                          <Checkbox
+                            onClick={() => {
+                              let checked = row?.valid;
+                              if (checked === false) {
+                                const docRef = doc(
+                                  db,
+                                  `${eventName}/${row?.id}`
+                                );
+                                updateDoc(docRef, {
+                                  valid: true,
+                                }).then(() => {
+                                  checked = true;
+                                  console.log(true);
+                                });
+                              } else {
+                                const docRef = doc(
+                                  db,
+                                  `${eventName}/${row?.id}`
+                                );
+                                updateDoc(docRef, {
+                                  valid: false,
+                                }).then(() => {
+                                  checked = false;
+                                  console.log(false);
+                                });
+                              }
+                            }}
+                            checked={row?.valid ? true : false}
+                            color="success"
+                            sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                          />{" "}
+                          <p style={{ fontSize: 14 }}>Valid</p>
+                        </TableCell>
                       </TableRow>
                     ))
                 ) : registrations?.length >= 1 ? (
@@ -314,13 +341,13 @@ function TableData({ eventName }) {
                       >
                         <Checkbox
                           onClick={() => {
-                            let checked = row?.valid
+                            let checked = row?.valid;
                             if (checked === false) {
                               const docRef = doc(db, `${eventName}/${row?.id}`);
                               updateDoc(docRef, {
                                 valid: true,
                               }).then(() => {
-                                checked=true;
+                                checked = true;
                                 console.log(true);
                               });
                             } else {
@@ -328,7 +355,7 @@ function TableData({ eventName }) {
                               updateDoc(docRef, {
                                 valid: false,
                               }).then(() => {
-                                checked=false;
+                                checked = false;
                                 console.log(false);
                               });
                             }
