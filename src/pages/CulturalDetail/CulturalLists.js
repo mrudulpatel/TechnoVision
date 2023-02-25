@@ -64,8 +64,8 @@ const CulturalLists = [
     // rule5: "PRIZE MONEY",
     // rule6: "1st Prize: ₹5000/-",
     // rule7: "2nd Prize: ₹3000/-",
-    amount: "Rs. 100/-",
-    regFee: " 100/- per team",
+    amount: "-",
+    regFee: "-",
 
     contact1: "Atharva Kurumbhatte | +91 9422202294",
     contact2: "Mrudul Patel | +91 8698793479",

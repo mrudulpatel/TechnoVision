@@ -238,6 +238,11 @@ const Form = (props) => {
                   className={classes.input}
                   onChange={handleImage}
                   required
+                  disabled={
+                    window.location.pathname === "/events/cs/istart"
+                      ? true
+                      : false
+                  }
                 />
               </div>
             </div>
@@ -251,6 +256,9 @@ const Form = (props) => {
               4.) Image file size should be less than 500kB
             </div>
             <a
+              hidden={
+                window.location.pathname === "/events/cs/istart" ? true : false
+              }
               download={true}
               style={{ textDecoration: "none", alignItems: "center" }}
               href={sessionStorage.getItem("qr")}
