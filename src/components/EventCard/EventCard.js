@@ -7,6 +7,12 @@ const EventCard = (props) => {
       <Link
         to={props.redirectLink}
         style={{ textDecoration: "none", color: "white" }}
+        onClick={() => {
+          sessionStorage.setItem("eventName", props.heading);
+          sessionStorage.setItem("amount", props.amount);
+          sessionStorage.setItem("qr", props.qr);
+          console.log("Saved");
+        }}
       >
         <div className={classes.imgBox}>
           <img
