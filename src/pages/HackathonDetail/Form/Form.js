@@ -24,7 +24,7 @@ const Form = (props) => {
   const [flag, setFlag] = useState(false);
   const [receiptId, setReceiptId] = useState("");
   const [college, setCollege] = useState("");
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const nameHandler = (event) => {
     setfullName(event.target.value);
@@ -246,9 +246,8 @@ const Form = (props) => {
               1.) It is mandatory to fill out all details <br />
               2.) After clicking on the "click to pay" button, a QR code will be
               downloaded, and you must pay using that QR code only <br />
-              3.) Upload a screenshot of your payment once it has been completed
-              <br />
-              4.) Image file size should be less than 500kB
+              3.) Upload a screenshot of your payment once it has been
+              completed
             </div>
             <a
               download={true}

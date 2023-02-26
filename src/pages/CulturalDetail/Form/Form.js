@@ -238,11 +238,6 @@ const Form = (props) => {
                   className={classes.input}
                   onChange={handleImage}
                   required
-                  disabled={
-                    window.location.pathname === "/events/cs/istart"
-                      ? true
-                      : false
-                  }
                 />
               </div>
             </div>
@@ -252,8 +247,6 @@ const Form = (props) => {
               2.) After clicking on the "click to pay" button, a QR code will be
               downloaded, and you must pay using that QR code only <br />
               3.) Upload a screenshot of your payment once it has been completed
-              <br />
-              4.) Image file size should be less than 500kB
             </div>
             <a
               hidden={
