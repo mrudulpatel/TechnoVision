@@ -39,10 +39,10 @@ const TechnicalDetail = () => {
                 return <p className={classes.para}>{map}</p>;
               })}
               <h3 className={classes.heading}>Prize Money</h3>
-              <h3 className={classes.para}>
+              <h3 className={classes.heading}>
                 1<sup>st</sup> Prize - ₹5000
               </h3>
-              <h3 className={classes.para}>
+              <h3 className={classes.heading}>
                 2<sup>nd</sup> Prize - ₹3000
               </h3>
               <span className={classes.amount}>
