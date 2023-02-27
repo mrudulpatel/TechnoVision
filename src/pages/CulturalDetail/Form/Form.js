@@ -249,9 +249,6 @@ const Form = (props) => {
               3.) Upload a screenshot of your payment once it has been completed
             </div>
             <a
-              hidden={
-                window.location.pathname === "/events/cs/istart" ? true : false
-              }
               download={true}
               style={{ textDecoration: "none", alignItems: "center" }}
               href={sessionStorage.getItem("qr")}
