@@ -83,7 +83,7 @@ const Admin = () => {
       setEvents(arr);
     }
     // CIVIL DEPT HEAD
-    else if (sessionStorage.getItem("email") === "burleaditya2816@gmail.com") {
+    else if (sessionStorage.getItem("email") === "burleaditya2816@gmail.com" || sessionStorage.getItem("email") === "shubhangikakade.ntc@gmail.com") {
       arr.push("Memory Event");
       arr.push("Bridge Crafting");
       arr.push("Bollywood Quiz");
