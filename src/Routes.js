@@ -43,10 +43,10 @@ const MyRoutes = () => {
             <Route path="/events" element={<Navigate to="cs" />} />
             <Route path="/teasers" element={<Gallery />} />
             <Route path="/teasers/watch/:id" element={<VideoPlayer />} />
-            <Route path="/events/cs/:id" element={<CulturalDetail />} />
-            <Route path="/events/entc/:id" element={<TechnicalDetail />} />
-            <Route path="/events/civil/:id" element={<HackathonDetail />} />
-            <Route path="/events/mechanical/:id" element={<GamesDetail />} />
+            <Route path="/events/cs/:id/:amount" element={<CulturalDetail />} />
+            <Route path="/events/entc/:id/:amount" element={<TechnicalDetail />} />
+            <Route path="/events/civil/:id/:amount" element={<HackathonDetail />} />
+            <Route path="/events/mechanical/:id/:amount" element={<GamesDetail />} />
             <Route exact path="/superadmin" element={<SuperAdmin />} />
             <Route path="/admin/:id" element={<Admin />} />
           </Routes>

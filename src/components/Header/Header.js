@@ -61,7 +61,9 @@ const Header = () => {
               className={classes.logo}
             />
             <img
-              src={"https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/TV_LOGO-removebg-preview.png?alt=media&token=e5be8a6e-8306-48ac-98ab-617b84741c3d"}
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/technovision-48d0a.appspot.com/o/TV_LOGO-removebg-preview.png?alt=media&token=e5be8a6e-8306-48ac-98ab-617b84741c3d"
+              }
               className={classes.logo1}
             />
           </div>
@@ -72,7 +74,7 @@ const Header = () => {
           <ul className={classes.nav}>
             <li
               className={classes.navLink}
-              hidden={window.location.pathname.includes("admin") ? false : true}
+              hidden={window.location.pathname.match("/admin/") ? false : true}
             >
               <Drop
                 activeClass={classes.active}
@@ -154,7 +156,7 @@ const Header = () => {
                 style={{ color: "white", textDecoration: "none" }}
               >
                 <HashLink className={classes.homeLink} to="/superadmin">
-                  Admin Register
+                  Admin Login
                 </HashLink>
               </Drop>
             </li>
@@ -204,7 +206,9 @@ const Header = () => {
 
           <ul className={classes.mobileNav}>
             <li
-              hidden={window.location.pathname.includes("admin") ? false : true}
+             hidden={
+              window.location.pathname.match("/admin/") ? false : true
+            }
             >
               <Drop
                 activeClass={classes.active}

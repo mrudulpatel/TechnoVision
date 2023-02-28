@@ -15,7 +15,9 @@ const GamesDetail = () => {
   const params = useParams();
   console.log(params.id);
 
-  const games = GamesLists.filter((event) => params.id === event.name);
+  const games = GamesLists.filter(
+    (event) => params.id.replace("%20", " ") === event.heading
+  );
 
   return (
     <section className={classes.ambaSection}>
@@ -68,7 +70,14 @@ const GamesDetail = () => {
           </div>
         </div>
       </Background>
-      {open && <Form open={open} onClick={() => setOpen(!open)} />}
+      {open && (
+        <Form
+          open={open}
+          amount={params.amount.replaceAll("%20", " ")}
+          eventName={params.id.replaceAll("%20", " ")}
+          onClick={() => setOpen(!open)}
+        />
+      )}
     </section>
   );
 };

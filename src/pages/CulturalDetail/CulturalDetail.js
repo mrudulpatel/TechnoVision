@@ -11,7 +11,7 @@ const CulturalDetail = () => {
   console.log(params.id);
 
   const culturalDetail = CulturalLists.filter(
-    (event) => params.id === event.name
+    (event) => params.id.replace("%20", " ") === event.heading
   );
 
   return (
@@ -70,7 +70,7 @@ const CulturalDetail = () => {
           </div>
         </div>
       </Background>
-      {open && <Form open={open} onClick={() => setOpen(!open)} />}
+      {open && <Form open={open} eventName={params.id.replace("%20", " ")} amount={params.amount.replace("%20", ". ")} onClick={() => setOpen(!open)} />}
     </section>
   );
 };

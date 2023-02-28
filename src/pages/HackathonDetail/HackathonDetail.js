@@ -76,9 +76,9 @@ const HackathonDetail = () => {
   }, []);
 
   const params = useParams();
-  console.log(params.id);
+  console.log(params.id.replace("%20", " "));
 
-  const hackathon = hackathonLists.filter((event) => params.id === event.name);
+  const hackathon = hackathonLists.filter((event) => params.id.replace("%20", " ") === event.heading);
 
   return (
     <section className={classes.ambaSection}>
@@ -140,7 +140,7 @@ const HackathonDetail = () => {
           </div>
         </div>
       </Background>
-      {open && <Form open={open} onClick={() => setOpen(!open)} />}
+      {open && <Form open={open} amount={params.amount.replace("%20", " ")} eventName={params.id.replace("%20", " ")} onClick={() => setOpen(!open)} />}
     </section>
   );
 };

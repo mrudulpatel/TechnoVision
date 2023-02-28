@@ -65,7 +65,7 @@ const Form = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Calling handleSubmit");
-    const docRef = doc(db, `${sessionStorage.getItem("eventName")}/${id}`);
+    const docRef = doc(db, `${props.eventName}/${id}`);
     const storageRef = ref(storage, `receipts/${fullName+"_"+id}`);
     uploadString(storageRef, image, "data_url").then(() => {
       getDownloadURL(storageRef).then((url) => {
@@ -79,7 +79,7 @@ const Form = (props) => {
           college: college,
           image: url,
           valid:false,
-          amount: sessionStorage.getItem("amount"),
+          amount: props.amount,
           receiptId: receiptId,
           timestamp: serverTimestamp(),
         }).then(() => {
@@ -114,8 +114,8 @@ const Form = (props) => {
     pdf.setFontSize(70);
     pdf.text(587, 646, `${id}`);
     pdf.text(451, 766, `${fullName}`);
-    pdf.text(239, 1161, `${sessionStorage.getItem("eventName")}`);
-    pdf.text(1727, 1161, `${sessionStorage.getItem("amount")}`);
+    pdf.text(239, 1161, `${props.eventName}`);
+    pdf.text(1727, 1161, `${props.amount}`);
     pdf.setFontSize(60);
     pdf.text(85, 1272, "Please Note:");
     pdf.text(85, 1352, "1.) This amount is non-refundable");
@@ -163,7 +163,7 @@ const Form = (props) => {
         <div className={classes.backdrop}>
           <div className={classes.bkdHeadingBox}>
             <h3 className={classes.bkdHeading} style={{ color: "white" }}>
-              Register for {sessionStorage.getItem("eventName")}
+              Register for {props.eventName}
               <p className={classes.input}>Registration ID: {id}</p>
               <p className={classes.input}>Receipt No.: {receiptId}</p>
             </h3>
