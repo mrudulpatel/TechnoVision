@@ -16,7 +16,7 @@ const GamesDetail = () => {
   console.log(params.id);
 
   const games = GamesLists.filter(
-    (event) => params.id.replace("%20", " ") === event.heading
+    (event) => params.id.replaceAll("%20", " ") === event.heading
   );
 
   return (

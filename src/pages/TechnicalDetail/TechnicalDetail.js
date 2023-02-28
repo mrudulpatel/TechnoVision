@@ -12,10 +12,10 @@ const TechnicalDetail = () => {
   }, []);
 
   const params = useParams();
-  console.log(params.id.replace("%20", " "));
+  console.log(params.id.replaceAll("%20", " "));
 
   const technical = TechnicalLists.filter(
-    (event) => params.id.replace("%20", " ") === event.heading
+    (event) => params.id.replaceAll("%20", " ") === event.heading
   );
   console.log(technical);
 
@@ -68,8 +68,8 @@ const TechnicalDetail = () => {
       {open && (
         <Form
           open={open}
-          amount={params.amount.replace("%20", " ")}
-          eventName={params.id.replace("%20", " ")}
+          amount={params.amount.replaceAll("%20", " ")}
+          eventName={params.id.replaceAll("%20", " ")}
           onClick={() => setOpen(!open)}
         />
       )}
