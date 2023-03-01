@@ -228,22 +228,6 @@ const Header = () => {
                 </HashLink>
               </Drop>
             </li>
-            <li>
-              <Drop
-                onClick={() => setMobile(!mobile)}
-                activeClass={classes.active}
-                to="home"
-                spy="true"
-                smooth={true}
-                offset={-120}
-                duration={600}
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                <HashLink className={classes.homeLink} to="/#home">
-                  Home
-                </HashLink>
-              </Drop>
-            </li>
             <li hidden={window.location.pathname !== "/home" ? true : false}>
               <Drop
                 onClick={() => setMobile(!mobile)}
@@ -311,7 +295,23 @@ const Header = () => {
                 style={{ color: "white", textDecoration: "none" }}
               >
                 <HashLink className={classes.homeLink} to="/superadmin">
-                  Admin Register
+                  Admin Login
+                </HashLink>
+              </Drop>
+            </li>
+            <li>
+              <Drop
+                onClick={() => setMobile(!mobile)}
+                activeClass={classes.active}
+                to="#home"
+                spy="true"
+                smooth={true}
+                offset={-100}
+                duration={600}
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <HashLink className={classes.homeLink} to="/home">
+                  Home
                 </HashLink>
               </Drop>
             </li>
